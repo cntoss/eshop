@@ -13,6 +13,8 @@
 	
 	<ul class="nav menu">
 		<li class="active"><a href="index.html"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
+		<li class="nav-link	"><a href="{{route('admin.categories.index')}}">Category</a></li>
+		<li class="nav-item"><a href="#">Posts</a></li>
 		<li><a href="login.html"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
 	</ul>
 </div><!--/.sidebar-->

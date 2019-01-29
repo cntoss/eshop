@@ -27,16 +27,16 @@ Route::group(['prefix'=>'admin'], function(){
     	'as'  =>'admin.categories.delete'
     ]);
 	Route::post('categories/update/{id}', [
-	    	'uses'=>'Admin\CategoryController@update',
-	    	'as'  =>'admin.categories.update'
-	    ]);
+    	'uses'=>'Admin\CategoryController@update',
+    	'as'  =>'admin.categories.update'
+    ]);
 	Route::post('categories/store', [
-	    	'uses'=>'Admin\CategoryController@store',
-	    	'as'  =>'admin.categories.store'
-	    ]);
+    	'uses'=>'Admin\CategoryController@store',
+    	'as'  =>'admin.categories.store'
+	]);
 	Route::get('categories/delete/{id}', [
-	    	'uses'=>'Admin\CategoryController@destroy',
-	    	'as'  =>'admin.categories.delete'
-	    ]);
+    	'uses'=>'Admin\CategoryController@destroy',
+    	'as'  =>'admin.categories.delete'
+    ]);
 
 });

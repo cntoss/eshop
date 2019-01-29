@@ -4,7 +4,7 @@
 @include('layouts.admin.snippets.session_message')
 
 <div class="content">
-<span class="pull-right clickable panel-toggle"><button type="button" class="btn btn-success"><a href="{{route('admin.categories.create')}}">create new</a></button></span>
+<span class="pull-left clickable panel-toggle"><a class="btn btn-success" href="{{route('admin.categories.create')}}">create new</a></span>
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -23,8 +23,8 @@
       <td>{{$record->description}}</td>
       <td>{{$record->status}}</td>
       <td>
-    <button type="button" class="btn btn-warning"><a href="{{route('admin.categories.edit',['id'=>$record->id])}}">edit</a></button>
-     <button type="button" class="btn btn-danger"><a href="{{route('admin.categories.delete',['id'=>$record->id])}}">delete</a></button>
+    <a class="btn btn-success" href="{{route('admin.categories.edit',['id'=>$record->id])}}">edit</a>
+    <a class="btn btn-danger" href="{{route('admin.categories.delete',['id'=>$record->id])}}">delete</a>
    </td>
  </tr>
 

@@ -39,4 +39,33 @@ Route::group(['prefix'=>'admin'], function(){
     	'as'  =>'admin.categories.delete'
     ]);
 
+Route::get('posts',[
+        'uses'=>'Admin\PostController@index',
+        'as'  =>'admin.posts.index'
+    ]);
+    Route::get('posts/create',[
+        'uses'=>'Admin\PostController@create',
+        'as'  =>'admin.posts.create'
+    ]);
+    Route::get('posts/edit/{id}', [
+        'uses'=>'Admin\PostController@edit',
+        'as'  =>'admin.posts.edit'
+    ]);
+     Route::get('posts/delete/{id}', [
+        'uses'=>'Admin\PostController@delete',
+        'as'  =>'admin.posts.delete'
+    ]);
+    Route::post('posts/update/{id}', [
+        'uses'=>'Admin\PostController@update',
+        'as'  =>'admin.posts.update'
+    ]);
+    Route::post('posts/store', [
+        'uses'=>'Admin\PostController@store',
+        'as'  =>'admin.posts.store'
+    ]);
+    Route::get('posts/delete/{id}', [
+        'uses'=>'Admin\PostController@destroy',
+        'as'  =>'admin.posts.delete'
+    ]);
+
 });

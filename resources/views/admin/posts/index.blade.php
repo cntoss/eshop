@@ -36,7 +36,7 @@
                 <a class="btn btn-primary" href="{{route('admin.posts.edit',['id'=>$post->id])}}">Edit</a>
                 <a class="btn btn-danger" href="{{route('admin.posts.delete',['id'=>$post->id])}}">Delete</a>
               </td>
-              <td>{{$post->category_id}}</td>
+              <td>{{$post->category->name}}</td>
             </tr>
 
           @endforeach

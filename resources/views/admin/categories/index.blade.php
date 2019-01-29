@@ -16,15 +16,15 @@
     </tr>
   </thead>
   <tbody>
-       @foreach($category as $record)
+       @foreach($categories as $category)
     <tr>
-      <th scope="row">{{$record->id}}</th>
-      <td>{{$record->name}}</td>
-      <td>{{$record->description}}</td>
-      <td>{{$record->status}}</td>
+      <th scope="row">{{$category->id}}</th>
+      <td>{{$category->name}} <span class="badge badge-info">{{$category->posts->count()}}</span></td>
+      <td>{{$category->description}}</td>
+      <td>{{$category->status}}</td>
       <td>
-    <a class="btn btn-success" href="{{route('admin.categories.edit',['id'=>$record->id])}}">edit</a>
-    <a class="btn btn-danger" href="{{route('admin.categories.delete',['id'=>$record->id])}}">delete</a>
+    <a class="btn btn-success" href="{{route('admin.categories.edit',['id'=>$category->id])}}">edit</a>
+    <a class="btn btn-danger" href="{{route('admin.categories.delete',['id'=>$category->id])}}">delete</a>
    </td>
  </tr>
 

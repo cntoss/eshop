@@ -1,8 +1,7 @@
 @extends('layouts.admin.index')
 @section('content')
 <div class="row">
-  
-      <div class="panel panel-default">
+        <div class="panel panel-default">
           <div class="panel-heading">
                <h3 class="card-title">Add Category</h3>
           </div>

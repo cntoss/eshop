@@ -5,6 +5,7 @@
       <div class="panel panel-default">
             <div class="panel-heading">
                <h3 class="card-title">Add Post</h3>
+               <br>
             </div>
             <div class="panel-body">
               <form method="post" action="{{route('admin.posts.store')}}" enctype="multipart/form-data">

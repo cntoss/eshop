@@ -7,37 +7,22 @@ use App\Http\Controllers\Controller;
 use App\Model\Post;
 use App\Model\Category;
 use Session;
-
+use File;
+use Auth;
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $posts=Post::all();
         return view('admin.posts.index',compact('posts'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $categories=Category::where('status',1)->get();
         return view('admin.posts.create',compact('categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         
@@ -55,6 +40,7 @@ class PostController extends Controller
         $post->status=$request->status;
         $post->slug=str_slug($title);
         $post->category_id=$request->category_id;
+        $post->user_id = Auth()->id();
         if($request->hasFile('image')){
             $image=$request->file('image');
             $new_name=rand().'.'.$image->getClientOriginalExtension();
@@ -67,48 +53,56 @@ class PostController extends Controller
    
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $posts=Post::where('id',$id)->first();
+        $categories=Category::where('status',1)->get();
+        return view('admin.posts.edit',compact('posts','categories'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
-    }
+        request()->validate([
+            'title'=>'required|max:60',
+            'description'=>'required',
+            'image'=>'image|mimes:jpg,png,jpeg,gif|max:2048',
+            'status'=>'required',
+            'category_id'=>'required'
+        ]);
+        $posts=Post::findOrFail($id);
+        $posts->title=$title=$request->title;
+        $posts->description=$request->description;
+        $posts->status=$request->status;
+        $posts->slug=str_slug($title);
+        $posts->category_id=$request->category_id;
+        if($request->hasFile('image')){
+            if(File::exists('images/'.$posts->image)&& $posts->image!='avatar.jpg'){
+                unlink('images/'.$posts->image);
+            }
+            $image=$request->file('image');
+            $new_name=rand().'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('/images'),$new_name);
+            $posts->image=$new_name;
+        }
+        $posts->save();
+        Session::flash('msg',"Post was Updated successfully");
+        return redirect()->route('admin.posts.index');
+       }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $post=Post::where('id',$id)->first();
+        if(File::exists('images/'.$post->image)){
+            unlink(('images/'.$post->image));
+        }
+        $post->delete();
+        Session::flash('msg',"Post Deleted Successfully");
+        return redirect()->route('admin.posts.index');
+
     }
 }

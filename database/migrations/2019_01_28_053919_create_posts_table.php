@@ -21,6 +21,7 @@ class CreatePostsTable extends Migration
             $table->string('image')->default('avatar.png');
             $table->boolean('status')->default('1');
             $table->integer('category_id');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

@@ -39,7 +39,7 @@ Route::group(['prefix'=>'admin'], function(){
     	'as'  =>'admin.categories.delete'
     ]);
 
-Route::get('posts',[
+    Route::get('posts',[
         'uses'=>'Admin\PostController@index',
         'as'  =>'admin.posts.index'
     ]);
@@ -51,13 +51,13 @@ Route::get('posts',[
         'uses'=>'Admin\PostController@edit',
         'as'  =>'admin.posts.edit'
     ]);
+    Route::post('posts/edit/{id}', [
+        'uses'=>'Admin\PostController@update',
+        'as'  =>'admin.posts.update'
+    ]);
      Route::get('posts/delete/{id}', [
         'uses'=>'Admin\PostController@delete',
         'as'  =>'admin.posts.delete'
-    ]);
-    Route::post('posts/update/{id}', [
-        'uses'=>'Admin\PostController@update',
-        'as'  =>'admin.posts.update'
     ]);
     Route::post('posts/store', [
         'uses'=>'Admin\PostController@store',
@@ -67,5 +67,17 @@ Route::get('posts',[
         'uses'=>'Admin\PostController@destroy',
         'as'  =>'admin.posts.delete'
     ]);
+     Route::get('users',[
+        'uses'=>'Admin\PostController@index',
+        'as'  =>'admin.users.index'
+    ]);
+    Route::get('users/create',[
+        'uses'=>'Admin\PostController@create',
+        'as'  =>'admin.users.create'
+    ]);
+
 
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

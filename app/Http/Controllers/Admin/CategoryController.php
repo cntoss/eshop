@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Model\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\Post;
 use Session;
 
 class CategoryController extends Controller

@@ -1,10 +1,10 @@
 <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
 	<div class="profile-sidebar">
 		<div class="profile-userpic">
-			<img src="http://placehold.it/50/30a5ff/fff" class="img-responsive" alt="">
+			<img src="{{asset('images/'.auth()->user()->image)}}" class="img-responsive" alt="">
 		</div>
 		<div class="profile-usertitle">
-			<div class="profile-usertitle-name">Santosh Adhikari</div>
+			<div class="profile-usertitle-name">{{auth()->user()->name}}</div>
 			<div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
 		</div>
 		<div class="clear"></div>
@@ -15,7 +15,8 @@
 		<li class="active"><a href="index.html"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
 		<li class="nav-item	"><a href="{{route('admin.categories.index')}}">Category</a></li>
 		<li class="nav-item"><a href="{{route('admin.posts.index')}}">Posts</a></li>
-		<li class="nav-item"><a href="{{route('admin.users.index')}}">Users</a></li>
+		<li class="nav-item"><a href="{{route('admin.users.index')}}"><span class="glyphicon glyphicon-cog
+          "> </span> Profile</a></li>
 		<li>
 			<a class="dropdown-item" href="{{ route('logout') }}"
 			   onclick="event.preventDefault();

@@ -1,33 +1,41 @@
 @extends('layouts.admin.index')
 @section('content')
-@extends('layouts.admin.index')
-@section('content')
- @include('layouts.admin.snippets.error_message')
-  <div class="row">
-    <div class="panel panel-default">
-      <a class="btn btn-success pull-right" href="{{route('admin.users.edit',['id'=>$user->id])}}" >Edit User</a><br>
-         <br>
 	  <div class="content">
-	      <img src="{{asset("images/$user->image")}}" alt="" height="40px">@section('content')
+	  	      <a class="btn btn-success pull-right" href="{{route('admin.users.edit',['id'=>$user->id])}}" >Edit User</a><br>
+         <br>
+         <table style="width: 75%">
+         <tr>
+	     <td> <img class="img-circle" src="{{asset("images/$user->image")}}" alt="" height="200px" ></td>
+		  <td style="padding: 50px;">{{$user->about}}</td>		    
+	     </tr>
+	      </table>
 	      <div class="table-responsive">          
 		    <table class="table table-bordered">
-		      <thead>
-		        <tr>
-		          <th>S.N</th>
-		          <th>name</th>
-		          <th>email</th>
-		          <th>about</th>
-		          <th>phone</th>
-		        </tr>
-		      </thead>
 		      <tbody>
 		               <tr>
+		               	<td>Id</td>
 		                <td>{{$user->id}}</td>
-		                <td>{{$user->name}}</td>
-		                <td>{{$user->email}}</td>
-		                <td>{{$user->about}}</td>
-		                <td>{{$user->phone}}</td>
 		               </tr>
+		               <tr>
+		               	<td>Name</td>
+		                <td>{{$user->name}}</td>
+		               	</tr>
+		               	<tr>
+		               	<td>Email</td>
+		                <td>{{$user->email}}</td>
+		               	</tr>
+		               	<tr>
+		               	<td>Phone</td>
+		                <td>{{$user->phone}}</td>
+		               	</tr>
+		               	<tr>
+		               		<td>Facebook_url</td>
+			                <td>{{$user->facebook_url}}</td>
+		               	</tr>
+		               	<tr>
+		               		<td>Twitter_url</td>
+		               		<td>{{$user->twitter_url}}</td>
+		               	</tr>
 		      </tbody>
 		    </table>
 	      </div>

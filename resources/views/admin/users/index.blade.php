@@ -1,5 +1,6 @@
 @extends('layouts.admin.index')
 @section('content')
+@include('layouts.admin.snippets.session_message')
 <div class="content">
   <a class="btn btn-success pull-right" href="{{route('admin.users.create')}}" >Add New User</a><br>
   <h2>User Data</h2>

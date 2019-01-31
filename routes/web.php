@@ -5,7 +5,7 @@ Route::get('/',function(){
 });
 
 
-Route::group(['prefix'=>'admin'], function(){
+Route::group(['prefix'=>'admin','middleware'=>'auth'], function(){
 	Route::get('dashboard', [
 		'uses'=>'Admin\DashboardController@index',
 		'as'=>'admin.dashboard'
@@ -55,10 +55,6 @@ Route::group(['prefix'=>'admin'], function(){
         'uses'=>'Admin\PostController@update',
         'as'  =>'admin.posts.update'
     ]);
-     Route::get('posts/delete/{id}', [
-        'uses'=>'Admin\PostController@delete',
-        'as'  =>'admin.posts.delete'
-    ]);
     Route::post('posts/store', [
         'uses'=>'Admin\PostController@store',
         'as'  =>'admin.posts.store'
@@ -68,13 +64,35 @@ Route::group(['prefix'=>'admin'], function(){
         'as'  =>'admin.posts.delete'
     ]);
      Route::get('users',[
-        'uses'=>'Admin\PostController@index',
+        'uses'=>'Admin\UserController@index',
         'as'  =>'admin.users.index'
     ]);
     Route::get('users/create',[
-        'uses'=>'Admin\PostController@create',
+        'uses'=>'Admin\UserController@create',
         'as'  =>'admin.users.create'
     ]);
+
+    Route::post('users/store',[
+        'uses'=>'Admin\UserController@store',
+        'as'  =>'admin.users.store'
+    ]);
+    Route::get('users/show/{id}',[
+        'uses'=>'Admin\UserController@show',
+        'as'  =>'admin.users.show'
+    ]);
+    Route::get('users/edit/{id}',[
+        'uses'=>'Admin\UserController@edit',
+        'as'  =>'admin.users.edit'
+    ]);
+    Route::get('users/delete/{id}', [
+        'uses'=>'Admin\UserController@destroy',
+        'as'  =>'admin.users.delete'
+    ]);
+    Route::post('users/update/{id}', [
+        'uses'=>'Admin\UserController@update',
+        'as'  =>'admin.users.update'
+    ]);
+    
 
 
 });

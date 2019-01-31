@@ -1,42 +1,35 @@
 @extends('layouts.admin.index')
 @section('content')
 <div class="content">
-  <a class="btn btn-success pull-right" href="{{route('admin.posts.create')}}" >Add New Post</a>
-  <h2>Posted Data</h2>
+  <a class="btn btn-success pull-right" href="{{route('admin.users.create')}}" >Add New User</a><br>
+  <h2>User Data</h2>
   <div class="table-responsive">          
     <table class="table table-bordered">
       <thead>
         <tr>
           <th>S.N</th>
-          <th>Title</th>
-          <th>Body</th>
+          <th>name</th>
+          <th>email</th>
           <th>Image</th>
-          <th>Status</th>
-          <th>Action</th>
-          <th>Category</th>
+          <th>about</th>
+          <th>phone</th>
+          <th>action</th>
         </tr>
       </thead>
       <tbody>
-          @if($posts->count())
-            @foreach($posts as $post)
+          @if($users->count())
+            @foreach($users as $user)
                <tr>
-                <td>{{$post->id}}</td>
-                <td>{{$post->title}}</td>
-                <td>{{$post->description}}</td>
-                <td><img src="{{asset("images/$post->image")}}" alt="" height="40px"></td>
+                <td>{{$user->id}}</td>
+                <td>{{$user->name}}</td>
+                <td>{{$user->email}}</td>
+                <td><img src="{{asset("images/$user->image")}}" alt="" height="40px"></td>
+                <td>{{$user->about}}</td>
+                <td>{{$user->phone}}</td>
                 <td>
-                  @if($post->status==1)
-                  <span class="level level-success">Active</span>
-                  @else
-                  <span class="level level-info">Inactive</span>
-                  @endif
-                </td>
-                <td>
-                  <a class="btn btn-primary" href="{{route('admin.posts.edit',['id'=>$post->id])}}">Edit</a>
-                  <a class="btn btn-danger" href="{{route('admin.posts.delete',['id'=>$post->id])}}">Delete</a>
-                </td>
-                <td>{{$post->category->name}}</td>
-              </tr>
+                  <a class="btn btn-primary" href="{{route('admin.users.edit',['id'=>$user->id])}}">Edit</a>
+                  <a class="btn btn-danger" href="{{route('admin.users.delete',['id'=>$user->id])}}">Delete</a>
+                  <a class="btn btn-success" href="{{route('admin.users.show',['id'=>$user->id])}}">Show</a>
             @endforeach
            @else
              <tr>

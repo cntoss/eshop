@@ -16,6 +16,16 @@
 		<li class="nav-item	"><a href="{{route('admin.categories.index')}}">Category</a></li>
 		<li class="nav-item"><a href="{{route('admin.posts.index')}}">Posts</a></li>
 		<li class="nav-item"><a href="{{route('admin.users.index')}}">Users</a></li>
-		<li><a href="login.html"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+		<li>
+			<a class="dropdown-item" href="{{ route('logout') }}"
+			   onclick="event.preventDefault();
+			                 document.getElementById('logout-form').submit();">
+			    {{ __('Logout') }}
+			</a>
+
+			<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+			    @csrf
+			</form>
+		</li>
 	</ul>
 </div><!--/.sidebar-->

@@ -30,7 +30,7 @@
                 <td>
                   <a class="btn btn-primary" href="{{route('admin.users.edit',['id'=>$user->id])}}">Edit</a>
                   <a class="btn btn-danger" href="{{route('admin.users.delete',['id'=>$user->id])}}">Delete</a>
-                  <a class="btn btn-success" href="{{route('admin.users.show',['id'=>$user->id])}}">Show</a>
+                  <a class="btn btn-success" href="{{route('admin.users.show')}}">Show</a>
             @endforeach
            @else
              <tr>

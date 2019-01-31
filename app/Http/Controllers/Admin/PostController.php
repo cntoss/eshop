@@ -55,7 +55,9 @@ class PostController extends Controller
 
     public function show($id)
     {
-        //
+    $id=Auth::user()->id;
+    $post=::Post::where('id',$id)->first();
+    return view('admin.posts.show',compact('post'));
     }
 
     public function edit($id)

@@ -63,7 +63,11 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'], function(){
         'uses'=>'Admin\PostController@destroy',
         'as'  =>'admin.posts.delete'
     ]);
-     Route::get('users',[
+    Route::get('posts/show', [
+        'uses'=>'Admin\PostController@show',
+        'as'  =>'admin.posts.show'
+    ]);   
+    Route::get('users',[
         'uses'=>'Admin\UserController@index',
         'as'  =>'admin.users.index'
     ]);
@@ -76,7 +80,7 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'], function(){
         'uses'=>'Admin\UserController@store',
         'as'  =>'admin.users.store'
     ]);
-    Route::get('users/show/{id}',[
+    Route::get('users/show',[
         'uses'=>'Admin\UserController@show',
         'as'  =>'admin.users.show'
     ]);
@@ -92,10 +96,26 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'], function(){
         'uses'=>'Admin\UserController@update',
         'as'  =>'admin.users.update'
     ]);
-    
+});
 
-
+Route::group(['prefix' => 'users','middleware'=>'auth'], function() {
+    Route::get('posts/edit', [
+        'uses'=>'Admin\PostController@edit',
+        'as'  =>'admin.posts.edit'
+    ]);
+    Route::post('posts/edit', [
+        'uses'=>'Admin\PostController@update',
+        'as'  =>'admin.posts.update'
+    ]);
+    Route::post('posts/store', [
+        'uses'=>'Admin\PostController@store',
+        'as'  =>'admin.posts.store'
+    ]);
+    Route::get('posts/show', [
+        'uses'=>'Admin\PostController@show',
+        'as'  =>'admin.posts.show'
+    ]);   
+   
 });
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');

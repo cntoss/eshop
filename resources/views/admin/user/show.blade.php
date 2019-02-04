@@ -1,7 +1,7 @@
 @extends('layouts.admin.index')
 @section('content')
 	  <div class="content">
-	  	      <a class="btn btn-success pull-right" href="{{route('admin.users.edit',['id'=>auth()->user()->id])}}" >Edit User</a><br>
+	  	    <a class="btn btn-success pull-right" href="{{route('admin.users.edit',['id'=>auth()->user()->id])}}" >Edit User</a><br>
          <br>
          <table style="width: 75%">
          <tr>
@@ -13,20 +13,20 @@
 		    <table class="table table-bordered">
 		      <tbody>
 		               <tr>
-		               	<td>Id</td>
-		                <td>{{$user->id}}</td>
+			               	<td>Id</td>
+			                <td>{{$user->id}}</td>
 		               </tr>
 		               <tr>
-		               	<td>Name</td>
-		                <td>{{$user->name}}</td>
+			               	<td>Name</td>
+			                <td>{{$user->name}}</td>
 		               	</tr>
 		               	<tr>
-		               	<td>Email</td>
-		                <td>{{$user->email}}</td>
+			               	<td>Email</td>
+			                <td>{{$user->email}}</td>
 		               	</tr>
 		               	<tr>
-		               	<td>Phone</td>
-		                <td>{{$user->phone}}</td>
+			               	<td>Phone</td>
+			                <td>{{$user->phone}}</td>
 		               	</tr>
 		               	<tr>
 		               		<td>Facebook_url</td>

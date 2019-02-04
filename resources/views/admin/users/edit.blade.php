@@ -8,7 +8,7 @@
          <br>
       </div>
       <div class="panel-body">
-        <form method="post" action="{{route('admin.users.update',['id'=>$user->id])}}" enctype="multipart/form-data">
+        <form method="post" action="{{route('admin.users.update',['id'=>auth()->user()->id])}}" enctype="multipart/form-data">
         {{@csrf_field()}}
         <div class="form-group ">
           <label for="inputName">Name</label>

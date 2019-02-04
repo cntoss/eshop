@@ -20,25 +20,25 @@
 	
 	<ul class="nav menu">
 		<li class="active"><a href="index.html"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
-		<li class="nav-item	"><a href="{{route('admin.categories.index')}}"><span class="fa fa-archive	
-			"></span> Category</a></li>
-           @if(Auth::user()->isadmin==1) 
-			<li class="nav-item"><a href="{{route('admin.posts.show',['id'=>auth()->user()->id])}}"><span class="fa fa-address-book"></span> Posts</a></li>
+		   @if(auth()->user()->isadmin==1)
 
+			    <li class="nav-item	"><a href="{{route('admin.categories.index')}}"><span class="fa fa-archive	
+				"></span> Category</a></li>
+	     		<li class="nav-item"><a href="{{route('admin.posts.index')}}"><span class="fa fa-address-book"></span> Posts</a></li>
+	     		<li class="nav-item"><a href="{{route('admin.users.index')}}"><span class="fa fa-user"> </span> User</a></li>
+	     		<li class="nav-item"><a href="{{route('admin.users.show')}}"><span class="glyphicon glyphicon-cog"> </span> Profile</a></li>
+				
 			@else
-			<li class="nav-item"><a href="{{route('admin.posts.index')}}"><span class="fa fa-address-book"></span> Posts</a></li>
-			<li class="nav-item"><a href="{{route('admin.users.index')}}"><span class="fa fa-user"> </span> User</a></li>
+				<li class="nav-item"><a href="{{route('admin.user.index')}}"><span class="fa fa-address-book"></span> Posts</a></li>
+				<li class="nav-item"><a href="{{route('admin.users.show')}}"><span class="glyphicon glyphicon-cog"> </span> Profile</a></li>
+
 			@endif
-         @if(Auth::user()->isadmin==1) 
-		<li class="nav-item"><a href="{{route('admin.users.show')}}"><span class="glyphicon glyphicon-cog"> </span> Profile</a></li>
-		@endif
-		<li>
+         <li>
 			<a class="dropdown-item" href="{{ route('logout') }}"
 			   onclick="event.preventDefault();
 			                 document.getElementById('logout-form').submit();">
 			   <span class="fa fa-power-off"></span> {{ __('Logout') }}
 			</a>
-
 			<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 			    @csrf
 			</form>

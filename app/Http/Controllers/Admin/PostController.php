@@ -53,11 +53,11 @@ class PostController extends Controller
    
     }
 
-    public function show($id)
+    public function show()
     {
-    $id=Auth::user()->id;
-    $post=::Post::where('id',$id)->first();
-    return view('admin.posts.show',compact('post'));
+        $id=Auth::id();
+        $post=Post::where('id',$id)->first();
+        return view('admin.posts.show',compact('post'));
     }
 
     public function edit($id)
@@ -83,7 +83,7 @@ class PostController extends Controller
         $posts->slug=str_slug($title);
         $posts->category_id=$request->category_id;
         if($request->hasFile('image')){
-            if(File::exists('images/'.$posts->image)&& $posts->image!='avatar.jpg'){
+            if(File::exists(public_path('images/'.$posts->image))&& $posts->image!='avatar.jpg'){
                 unlink('images/'.$posts->image);
             }
             $image=$request->file('image');

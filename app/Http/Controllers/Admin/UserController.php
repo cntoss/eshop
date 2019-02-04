@@ -70,15 +70,15 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        request()->validate([
+       request()->validate([
             'name'=>'required|max:60',
             'email'=>'required',
             'password'=>'required',
-            'facebook_url'=>'required',
-            'twitter_url'=>'required',
+            'facebook_url'=>'nullable|url',
+            'twitter_url'=>'nullable|url',
             'about'=>'required',
             'image'=>'image|mimes:jpg,png,jpeg,gif|max:2048',
-            'phone'=>'required|max:10'
+            'phone'=>'nullable|numeric'
         ]);
         $user=User::findOrFail($id);
         $user->name=$request->name;
@@ -88,15 +88,11 @@ class UserController extends Controller
         $user->twitter_url=$request->twitter_url;
         $user->password=$request->password;
         $user->phone=$request->phone;
-        if($request->hasFile('image')){
-            if(File::exists('images/'.$user->image)&& $user->image!='avatar.jpg'){
-                unlink('images/'.$user->image);
-            }
             $image=$request->file('image');
             $new_name=rand().'.'.$image->getClientOriginalExtension();
             $image->move(public_path('/images'),$new_name);
             $user->image=$new_name;
-        }
+                   
         $user->save();
         Session::flash('msg',"User's data was created successfully");
         return redirect()->route('admin.users.index');

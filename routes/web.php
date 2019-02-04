@@ -96,6 +96,36 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'], function(){
         'uses'=>'Admin\UserController@update',
         'as'  =>'admin.users.update'
     ]);
+
+
+    Route::get('user',[
+        'uses'=>'Admin\AdminController@index',
+        'as'  =>'admin.user.index'
+    ]);
+    Route::get('user/create',[
+        'uses'=>'Admin\AdminController@create',
+        'as'  =>'admin.user.create'
+    ]);
+    Route::post('user/store',[
+        'uses'=>'Admin\AdminController@store',
+        'as'  =>'admin.user.store'
+    ]);
+    Route::get('user/show',[
+        'uses'=>'Admin\AdminController@show',
+        'as'  =>'admin.user.show'
+    ]);
+    Route::get('user/edit/{id}',[
+        'uses'=>'Admin\AdminController@edit',
+        'as'  =>'admin.user.edit'
+    ]);
+    Route::get('user/delete/{id}', [
+        'uses'=>'Admin\AdminController@destroy',
+        'as'  =>'admin.user.delete'
+    ]);
+    Route::post('user/update/{id}', [
+        'uses'=>'Admin\AdminController@update',
+        'as'  =>'admin.user.update'
+    ]);
 });
 
 Route::group(['prefix' => 'users','middleware'=>'auth'], function() {

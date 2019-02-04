@@ -3,9 +3,12 @@
 Route::get('/',function(){
 	return view('layouts.admin.index');
 });
+Route::get('unauthorized', function() {
+    return "unauthorized";
+})->name('unauthorized');
 
+Route::group(['prefix'=>'admin','middleware'=>['auth','checkuser']], function(){
 
-Route::group(['prefix'=>'admin','middleware'=>'auth'], function(){
 	Route::get('dashboard', [
 		'uses'=>'Admin\DashboardController@index',
 		'as'=>'admin.dashboard'
